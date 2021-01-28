@@ -1,2 +1,2 @@
-# GettingStarted-Python
-Getting started with Python &amp; RESTful APIs
+# Getting Started with Python RESTful APIs
+
