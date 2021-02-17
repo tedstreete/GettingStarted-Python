@@ -4,13 +4,11 @@ Usage:
     ex_01 show (--args | --keys) [-t]
     ex_01 hosts [-pt]
     ex_01 host_details <host_name> [-inm]
-    ex_01 version
 
 Arguments:
     show
     hosts
     host_details
-    version
 
 Options:
     --args      Show docopt args
@@ -27,11 +25,10 @@ Options:
 from docopt import docopt
 import simplejson as json
 
-version = '1.1.0'
 
 def print_data(data, pretty=False, object_type=False):
     """ Default arguments.
-
+    
     Here we have two arguments that have defaults, therefore
     they are optional.
     """
@@ -51,7 +48,7 @@ def load_json():
     """ Review PEP-343 (The "with" Statement).
 
     Here we are returning the json data from within the 'with' statement.
-    This will not affect the operation of the 'with' statement iteself.
+    This will not affect the operation of the 'with' statement iteself. 
     """
     with open('ex_01.json', 'r') as fin:
         return json.load(fin)
@@ -76,16 +73,16 @@ def main():
         json_data = load_json()['hostList']  # Assigning only a portion of json data
 
         # Positional arguments vs. keyword arguments (#1)
-        # print_data(json_data, args['-p'], args['-t'])
+        print_data(json_data, args['-p'], args['-t'])
 
     	# Positional arguments vs. keyword arguments (#2)
-    	# print_data(json_data['hostList'], object_type=args['-t'], pretty=args['-p'])
+        # print_data(json_data, object_type=args['-t'], pretty=args['-p'])
 
     	# Positional arguments vs. keyword arguments (#3)
-    	print_data(object_type=args['-t'], pretty=args['-p'], json_data['hostList'])
+        # print_data(object_type=args['-t'], pretty=args['-p'], json_data)
 
         # Positional arguments vs. keyword arguments (#4)
-        # print_data(object_type=args['-t'], pretty=args['-p'], data=json_data['hostList'])
+        # print_data(object_type=args['-t'], pretty=args['-p'], data=json_data)
 
     elif args['host_details']:
         if args['<host_name>'] == "all":
@@ -107,8 +104,6 @@ def main():
             output.append(", ".join(host_info))  # Using string join method with a list
 
         print_data(output, True)
-    elif args['version']:
-        print_data (version)
 
 
 if __name__ == "__main__":
